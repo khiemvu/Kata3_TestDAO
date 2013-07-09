@@ -22,27 +22,12 @@ public class BankAccountDAOImpl implements BankAccountDAO
 
 
     @Override
-    public void create(BankAccount account) {
+    public void saveAccount(BankAccount capture) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void update(BankAccount account) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void delete(BankAccount account) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void delete(long id) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public BankAccount get(long id) {
-        return entityManager.find(BankAccount.class, 2l);  //To change body of implemented methods use File | Settings | File Templates.
+    public BankAccount findAccount(String accNumber) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -29,6 +29,22 @@ public class BankAccount
     @Column(name="des")
     private String des;
 
+    @Column(name="time_stamp")
+    private long time_stamp;
+
+    public BankAccount(String number_acc, long time_stamp) {
+        this.number_acc = number_acc;
+        this.time_stamp = time_stamp;
+    }
+
+    public Long getTime_stamp() {
+        return time_stamp;
+    }
+
+    public void setTime_stamp(long time_stamp) {
+        this.time_stamp = time_stamp;
+    }
+
     public Long getId()
     {
         return id;

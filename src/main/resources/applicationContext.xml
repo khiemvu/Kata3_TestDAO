@@ -11,9 +11,9 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
     <context:annotation-config></context:annotation-config>
-    <bean id="bankAccountService" class="com.qsoft.dbcatalog.business.impl.BankAccountServiceImpl"></bean>
+    <bean id="bankAccountService" class="com.qsoft.dbcatalog.business.impl.BankAccountServiceImpl"/>
 
-
+    <bean id="transactionDAO" class="com.qsoft.dbcatalog.persistence.dao.impl.TransactionDAOImpl"/>
     <bean id="bankAccountDAO" class="com.qsoft.dbcatalog.persistence.dao.impl.BankAccountDAOImpl"/>
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -23,17 +23,15 @@
         <property name="persistenceUnitName" value="NewPersistenceUnit"/>
         <property name="persistenceXmlLocation" value="META-INF/persistence.xml"/>
         <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <!--<property name="database" value="POSTGRESQL" />-->
-                <!--<property name="showSql" value="true" />-->
-            </bean>
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
         </property>
     </bean>
 
     <!--<bean id="entityManagerFactory"-->
-          <!--class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->
-        <!--&lt;!&ndash;p:dataSource-ref="dataSource">&ndash;&gt;-->
-        <!--<property name="persistenceUnitName" value="persistenceUnitName"/>-->
+    <!--class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->
+    <!--&lt;!&ndash;p:dataSource-ref="dataSource">&ndash;&gt;-->
+    <!--<property name="persistenceUnitName" value="persistenceUnitName"/>-->
     <!--</bean>-->
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

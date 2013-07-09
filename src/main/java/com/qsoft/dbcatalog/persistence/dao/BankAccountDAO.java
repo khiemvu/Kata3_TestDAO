@@ -11,13 +11,7 @@ import com.qsoft.dbcatalog.persistence.model.BankAccount;
  */
 public interface BankAccountDAO
 {
-    public void create(BankAccount account);
+    public void saveAccount(BankAccount capture);
 
-    public void update(BankAccount account);
-
-    public void delete (BankAccount account);
-
-    public void delete (long id);
-
-    public BankAccount get(long id);
+    public BankAccount findAccount(String accNumber);
 }
