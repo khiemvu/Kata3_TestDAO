@@ -10,9 +10,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <!--<bean id="sampleService" class="com.qsoft.dbcatalog.business.impl.SampleServiceImpl"></bean>-->
-    <!--<bean id="dealerDAO" class="com.qsoft.dbcatalog.test.BankAccountDAODump"/>-->
-    <bean id="bankAccountDAO" class="com.qsoft.dbcatalog.test.BankAccountDAODump"/>
+    <import resource="applicationContext.xml"/>
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <!--p:dataSource-ref="dataSource">-->

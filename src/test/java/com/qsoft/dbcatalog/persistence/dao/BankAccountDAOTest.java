@@ -1,9 +1,22 @@
 package com.qsoft.dbcatalog.persistence.dao;
 
+import com.qsoft.dbcatalog.persistence.model.BankAccount;
+import org.dbunit.DataSourceDatabaseTester;
+import org.dbunit.IDatabaseTester;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.sql.DataSource;
+
+import static junit.framework.Assert.assertEquals;
 
 
 /**
@@ -14,14 +27,49 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/testContext.xml"})
+@ContextConfiguration(locations = {"classpath:testContext.xml"})
 public class BankAccountDAOTest
 {
     @Autowired
     private BankAccountDAO bankAccountDAO;
 
-    @org.junit.Test
-    public void testGet() throws Exception {
-        System.out.println(bankAccountDAO.get(2l));
+    @Autowired
+    private DataSource dataSource;
+
+    private IDatabaseTester iDatabaseTester;
+
+    @Before
+    public void setup() throws Exception
+    {
+        IDataSet dataSet = readDataSet();
+        cleanlyInsert(dataSet);
+    }
+
+    private IDataSet readDataSet() throws Exception
+    {
+        return new FlatXmlDataSetBuilder().build(System.class.getResource("/dataset.xml"));
+    }
+
+    private void cleanlyInsert(IDataSet dataSet) throws Exception
+    {
+        iDatabaseTester = new DataSourceDatabaseTester(dataSource);
+        iDatabaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        iDatabaseTester.setDataSet(dataSet);
+        iDatabaseTester.onSetup();
+    }
+
+    @After
+    public void tearDown() throws Exception
+    {
+        iDatabaseTester.onTearDown();
+    }
+
+
+    @Test
+    public void testGetInfoAccount(){
+        //BankAccount account = new BankAccount("0123456789", 10L);
+        BankAccount bankAccount = bankAccountDAO.findAccount("0123456789");
+        assertEquals("0123456789", bankAccount.getNumber_acc());
+        assertEquals("openBankAccount", bankAccount.getDes());
     }
 }

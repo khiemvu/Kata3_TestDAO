@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 import com.qsoft.dbcatalog.persistence.model.BankAccount;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 
 /**
@@ -22,12 +23,14 @@ public class BankAccountDAOImpl implements BankAccountDAO
 
 
     @Override
-    public void saveAccount(BankAccount capture) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void saveAccount(BankAccount bankAccount) {
+        entityManager.persist(bankAccount);//To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public BankAccount findAccount(String accNumber) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public BankAccount findAccount(String number_acc) {
+        Query query = entityManager.createQuery("SELECT c FROM BankAccount c Where c.number_acc = :number_acc");
+        query.setParameter("number_acc", number_acc);
+        return (BankAccount) query.getSingleResult();
     }
 }
