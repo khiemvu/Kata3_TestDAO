@@ -36,6 +36,9 @@ public class BankAccount
         this.number_acc = number_acc;
         this.time_stamp = time_stamp;
     }
+    public BankAccount(){
+
+    }
 
     public Long getTime_stamp() {
         return time_stamp;
