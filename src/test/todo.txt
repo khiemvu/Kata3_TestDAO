@@ -1,1 +1,2 @@
 1. test get info a account existed on system
+2. test get info a account after opent account

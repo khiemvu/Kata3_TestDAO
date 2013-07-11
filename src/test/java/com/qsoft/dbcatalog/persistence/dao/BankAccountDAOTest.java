@@ -34,6 +34,9 @@ public class BankAccountDAOTest
     private BankAccountDAO bankAccountDAO;
 
     @Autowired
+    private TransactionDAO transactionDAO;
+
+    @Autowired
     private DataSource dataSource;
 
     private IDatabaseTester iDatabaseTester;
@@ -72,4 +75,13 @@ public class BankAccountDAOTest
         assertEquals("0123456789", bankAccount.getNumber_acc());
         assertEquals("openBankAccount", bankAccount.getDes());
     }
+    @Test
+    public void testAfterOpentAccountThenGetInfoAccount(){
+        BankAccount bankAccount = new BankAccount("9876543210", 10L);
+        bankAccountDAO.saveAccount(bankAccount);
+        BankAccount checkAccount = bankAccountDAO.findAccount("9876543210");
+        assertEquals(bankAccount.getNumber_acc(), checkAccount.getNumber_acc());
+    }
+
+
 }
