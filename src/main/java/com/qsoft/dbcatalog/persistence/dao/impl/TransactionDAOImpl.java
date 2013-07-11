@@ -5,6 +5,7 @@ import com.qsoft.dbcatalog.persistence.model.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -25,8 +26,11 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public List<Transaction> getAllTransaction(String s) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<Transaction> getAllTransaction(String number_acc) {
+        Query query = entityManager.createQuery("SELECT t FROM Transaction t WHERE t.number_acc = :number_acc");
+        query.setParameter("number_acc", number_acc);
+        List<Transaction> transactionList = query.getResultList();
+        return transactionList;
     }
 
     @Override

@@ -3,7 +3,9 @@ package com.qsoft.dbcatalog.business.impl;
 import com.qsoft.dbcatalog.business.TransactionService;
 import com.qsoft.dbcatalog.persistence.dao.TransactionDAO;
 import com.qsoft.dbcatalog.persistence.model.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -14,9 +16,13 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class TransactionServiceImpl implements TransactionService {
+
+    @Autowired
+    private TransactionDAO transactionDAO;
+
     @Override
     public void initTransactionDAO(TransactionDAO transactionDAO) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.transactionDAO = transactionDAO;
     }
 
     @Override
@@ -26,7 +32,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> getAllTransaction(String accNumber) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<Transaction> transactionList = transactionDAO.getAllTransaction(accNumber);
+        if(transactionList == null)
+            return null;
+        else
+            return transactionList;
     }
 
     @Override
