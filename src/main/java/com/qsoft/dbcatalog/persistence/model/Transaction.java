@@ -31,6 +31,18 @@ public class Transaction
     @Column(name="time_stamp")
     private long time_stamp;
 
+
+    public Transaction(String number_acc, double balance, String des, long time_stamp) {
+        this.number_acc = number_acc;
+        this.balance = balance;
+        this.des = des;
+        this.time_stamp = time_stamp;
+    }
+
+    public Transaction(){
+
+    }
+
     public double getBalance() {
         return balance;
     }

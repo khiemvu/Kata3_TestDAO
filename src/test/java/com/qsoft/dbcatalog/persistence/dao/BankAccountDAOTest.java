@@ -1,6 +1,7 @@
 package com.qsoft.dbcatalog.persistence.dao;
 
 import com.qsoft.dbcatalog.persistence.model.BankAccount;
+import com.qsoft.dbcatalog.persistence.model.Transaction;
 import org.dbunit.DataSourceDatabaseTester;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.IDataSet;
@@ -15,6 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
+
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -83,5 +86,10 @@ public class BankAccountDAOTest
         assertEquals(bankAccount.getNumber_acc(), checkAccount.getNumber_acc());
     }
 
+    @Test
+    public void testGetAllTransaction(){
+        List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789");
+        assertEquals(2, transactionList.size());
 
+    }
 }
