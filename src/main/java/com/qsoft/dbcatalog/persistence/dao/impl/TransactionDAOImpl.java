@@ -48,7 +48,11 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public List<Transaction> getAllTransaction(String s, int n) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<Transaction> getAllTransaction(String number_account, int n) {
+        Query query = entityManager.createQuery("SELECT c FROM com.qsoft.dbcatalog.persistence.model.Transaction c WHERE c.number_account = :number_account ORDER BY c. time_stamp DESC ");
+        query.setMaxResults(n);
+        query.setParameter("number_account",number_account);
+        List<Transaction> transactionList = query.getResultList();
+        return transactionList;
     }
 }

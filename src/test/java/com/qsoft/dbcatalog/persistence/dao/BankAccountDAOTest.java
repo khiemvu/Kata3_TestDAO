@@ -101,6 +101,6 @@ public class BankAccountDAOTest
     public void testGetNTransactionNew(){
         List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789",2);
         assertEquals("withdraw", transactionList.get(1).getDes());
-        assertEquals(1000,transactionList.get(1).getBalance());
+        assertEquals(1000.0,transactionList.get(1).getBalance());
     }
 }
