@@ -91,4 +91,10 @@ public class BankAccountDAOTest
         List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789");
         assertEquals(2, transactionList.size());
     }
+
+    @Test
+    public void testGetAllTransactionFromStartTimeToStopTime(){
+        List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789", 1000, 50000);
+        assertEquals(2, transactionList.size());
+    }
 }
