@@ -40,6 +40,9 @@ public class TransactionDAOImpl implements TransactionDAO {
     @Override
     public List<Transaction> getAllTransaction(String number_account, long startTime, long stopTime) {
         Query query = entityManager.createQuery("SELECT c FROM com.qsoft.dbcatalog.persistence.model.Transaction c WHERE c.number_account = :number_account AND c.time_stamp > :startTime AND c.time_stamp < :stopTime");
+        query.setParameter("number_account",number_account);
+        query.setParameter("startTime",startTime);
+        query.setParameter("stopTime",stopTime);
         List<Transaction> transactionList = query.getResultList();
         return transactionList;
     }

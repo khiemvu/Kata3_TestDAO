@@ -89,7 +89,7 @@ public class BankAccountDAOTest
     @Test
     public void testGetAllTransaction(){
         List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789");
-        assertEquals(2, transactionList.size());
+        assertEquals(3, transactionList.size());
     }
 
     @Test
