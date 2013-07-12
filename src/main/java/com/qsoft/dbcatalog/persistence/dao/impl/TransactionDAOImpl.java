@@ -2,6 +2,8 @@ package com.qsoft.dbcatalog.persistence.dao.impl;
 
 import com.qsoft.dbcatalog.persistence.dao.TransactionDAO;
 import com.qsoft.dbcatalog.persistence.model.Transaction;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,20 +17,22 @@ import java.util.List;
  * Time: 4:30 AM
  * To change this template use File | Settings | File Templates.
  */
+@Transactional
+@Component
 public class TransactionDAOImpl implements TransactionDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Transaction saveTransaction(Transaction capture) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public void saveTransaction(Transaction transaction) {
+        entityManager.persist(transaction);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public List<Transaction> getAllTransaction(String number_acc) {
-        Query query = entityManager.createQuery("SELECT t FROM Transaction t WHERE t.number_acc = :number_acc");
-        query.setParameter("number_acc", number_acc);
+    public List<Transaction> getAllTransaction(String number_account) {
+        Query query = entityManager.createQuery("SELECT c FROM com.qsoft.dbcatalog.persistence.model.Transaction c WHERE c.number_account = :number_account");
+        query.setParameter("number_account",number_account);
         List<Transaction> transactionList = query.getResultList();
         return transactionList;
     }

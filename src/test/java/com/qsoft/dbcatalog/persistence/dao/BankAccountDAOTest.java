@@ -40,7 +40,7 @@ public class BankAccountDAOTest
     private TransactionDAO transactionDAO;
 
     @Autowired
-    private DataSource dataSource;
+    private DataSource dataSourceTest;
 
     private IDatabaseTester iDatabaseTester;
 
@@ -58,7 +58,7 @@ public class BankAccountDAOTest
 
     private void cleanlyInsert(IDataSet dataSet) throws Exception
     {
-        iDatabaseTester = new DataSourceDatabaseTester(dataSource);
+        iDatabaseTester = new DataSourceDatabaseTester(dataSourceTest);
         iDatabaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         iDatabaseTester.setDataSet(dataSet);
         iDatabaseTester.onSetup();
@@ -90,6 +90,5 @@ public class BankAccountDAOTest
     public void testGetAllTransaction(){
         List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789");
         assertEquals(2, transactionList.size());
-
     }
 }

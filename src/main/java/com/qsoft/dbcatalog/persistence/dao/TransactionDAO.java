@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface TransactionDAO {
 
-    Transaction saveTransaction(Transaction capture);
+    void saveTransaction(Transaction capture);
 
     List<Transaction> getAllTransaction(String s);
 

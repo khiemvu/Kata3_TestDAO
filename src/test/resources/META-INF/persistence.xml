@@ -4,6 +4,7 @@
     <persistence-unit name="persistenceUnitName">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.qsoft.dbcatalog.persistence.model.BankAccount</class>
+        <class>com.qsoft.dbcatalog.persistence.model.Transaction</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>

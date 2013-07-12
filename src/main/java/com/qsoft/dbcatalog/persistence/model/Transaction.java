@@ -19,8 +19,8 @@ public class Transaction
     @Column(name="id_transaction")
     private long id;
 
-    @Column(name="number_acc")
-    private String number_acc;
+    @Column(name= "number_account")
+    private String number_account;
 
     @Column(name="amount")
     private double balance;
@@ -33,7 +33,7 @@ public class Transaction
 
 
     public Transaction(String number_acc, double balance, String des, long time_stamp) {
-        this.number_acc = number_acc;
+        this.number_account = number_acc;
         this.balance = balance;
         this.des = des;
         this.time_stamp = time_stamp;
@@ -52,11 +52,11 @@ public class Transaction
     }
 
     public String getNumber_acc() {
-        return number_acc;
+        return number_account;
     }
 
     public void setNumber_acc(String number_acc) {
-        this.number_acc = number_acc;
+        this.number_account = number_acc;
     }
 
     public String getDes() {
