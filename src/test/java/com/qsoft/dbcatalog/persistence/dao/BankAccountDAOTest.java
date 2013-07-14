@@ -112,4 +112,9 @@ public class BankAccountDAOTest
         assertEquals(1000.0, transactionList.get(3).getBalance());
         assertEquals("deposit", transactionList.get(3).getDes());
     }
+
+    @Test
+    public void testGetAAccountNoExistOnSystem(){
+        assertEquals(null, bankAccountDAO.findAccount("1234567890"));
+    }
 }
