@@ -103,4 +103,13 @@ public class BankAccountDAOTest
         assertEquals("withdraw", transactionList.get(1).getDes());
         assertEquals(1000.0,transactionList.get(1).getBalance());
     }
+    @Test
+    public void testSaveTransaction(){
+        Transaction transaction = new Transaction("0123456789", 1000, "deposit", 70000L);
+        transactionDAO.saveTransaction(transaction);
+        List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789");
+        assertEquals(4, transactionList.size());
+        assertEquals(1000.0, transactionList.get(3).getBalance());
+        assertEquals("deposit", transactionList.get(3).getDes());
+    }
 }

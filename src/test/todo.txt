@@ -3,3 +3,6 @@
 3. test get all transaction
 4. test get all transaction from start time to stop time
 5. test get n transaction
+6. test save transaction
+7. test get a account no exist on DAO
+8. test do transaction with negative amount
