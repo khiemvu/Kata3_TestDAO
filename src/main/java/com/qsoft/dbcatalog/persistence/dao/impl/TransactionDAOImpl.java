@@ -26,7 +26,10 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public void saveTransaction(Transaction transaction) {
-        entityManager.persist(transaction);  //To change body of implemented methods use File | Settings | File Templates.
+        if(transaction.getBalance()<0)
+            throw new RuntimeException("Negative amount not allow");
+        else
+            entityManager.persist(transaction);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

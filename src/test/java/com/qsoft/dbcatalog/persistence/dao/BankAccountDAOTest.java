@@ -9,7 +9,10 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.internal.runners.statements.ExpectException;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -116,5 +119,13 @@ public class BankAccountDAOTest
     @Test
     public void testGetAAccountNoExistOnSystem(){
         assertEquals(null, bankAccountDAO.findAccount("1234567890"));
+    }
+    @Rule
+    public ExpectedException expectException = ExpectedException.none();
+    @Test
+    public void testDoTransactionWithNegativeAmount(){
+        Transaction transaction = new Transaction("0123456789", -1000, "deposit", 70000L);
+        expectException.expectMessage("Negative amount not allow");
+        transactionDAO.saveTransaction(transaction);
     }
 }
