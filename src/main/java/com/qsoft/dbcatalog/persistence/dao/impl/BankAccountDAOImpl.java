@@ -33,6 +33,9 @@ public class BankAccountDAOImpl implements BankAccountDAO
     public BankAccount findAccount(String number_acc) {
         Query query = entityManager.createQuery("SELECT c FROM com.qsoft.dbcatalog.persistence.model.BankAccount c Where c.number_acc = :number_acc");
         query.setParameter("number_acc", number_acc);
-        return (BankAccount) query.getSingleResult();
+        if(query.getResultList().isEmpty())
+            return null;
+        else
+            return (BankAccount) query.getSingleResult();
     }
 }
